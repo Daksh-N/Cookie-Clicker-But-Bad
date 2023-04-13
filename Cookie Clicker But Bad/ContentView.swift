@@ -10,14 +10,21 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         VStack {
-            Text("Game is in development, please be paitent")
+            TitleText(text: "Cook E Clicker")
+            Image("Cook E").resizable().frame(width: 400, height: 400)
         }
-        .padding()
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+    }
+}
+
+struct TitleText: View {
+    let text: String
+    var body: some View {
+        Text(text).font(Font.custom("Cochin", size: 48))
     }
 }
