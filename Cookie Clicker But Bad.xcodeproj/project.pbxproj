@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B601189529ED93FC008A0436 /* ShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B601189429ED93FB008A0436 /* ShopView.swift */; };
 		B64B28DB29E5A6A600B1D823 /* Cookie_Clicker_But_BadApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64B28DA29E5A6A600B1D823 /* Cookie_Clicker_But_BadApp.swift */; };
 		B64B28DD29E5A6A600B1D823 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64B28DC29E5A6A600B1D823 /* ContentView.swift */; };
 		B64B28DF29E5A6A900B1D823 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B64B28DE29E5A6A900B1D823 /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B601189429ED93FB008A0436 /* ShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopView.swift; sourceTree = "<group>"; };
 		B64B28D729E5A6A600B1D823 /* Cookie Clicker But Bad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cookie Clicker But Bad.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B64B28DA29E5A6A600B1D823 /* Cookie_Clicker_But_BadApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cookie_Clicker_But_BadApp.swift; sourceTree = "<group>"; };
 		B64B28DC29E5A6A600B1D823 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 			children = (
 				B64B28DA29E5A6A600B1D823 /* Cookie_Clicker_But_BadApp.swift */,
 				B64B28DC29E5A6A600B1D823 /* ContentView.swift */,
+				B601189429ED93FB008A0436 /* ShopView.swift */,
 				B64B28DE29E5A6A900B1D823 /* Assets.xcassets */,
 				B64B28E029E5A6A900B1D823 /* Preview Content */,
 			);
@@ -257,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B601189529ED93FC008A0436 /* ShopView.swift in Sources */,
 				B64B28DD29E5A6A600B1D823 /* ContentView.swift in Sources */,
 				B64B28DB29E5A6A600B1D823 /* Cookie_Clicker_But_BadApp.swift in Sources */,
 			);
