@@ -10,6 +10,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var test = 0.0
     @State private var placeNames =
     [
         "V",
@@ -31,7 +32,8 @@ struct ContentView: View {
         "q",
         "t",
         "b",
-        "m"
+        "m",
+        "k"
     ]
     @State private var cookies = 0
     var body: some View {
@@ -42,22 +44,38 @@ struct ContentView: View {
                 .onTapGesture {
                     cookies += 1
                 }
+            Text(format(num: test))
         }
     }
     // This function formats the given number according to the digits place, ex: 10000000 -> "10m"
     func format(num: Double) -> String {
-        var exponent = 63
-        var v = pow(10, exponent)
-        var i = 0
-        while (v >= 1000000) {
-            if (true) //yet to be formatted to num >= v once I can figure it out
-            {
-                return "Formatted Number + \(placeNames[i])"
-            }
-            i += 1
-            v = pow(10, exponent - 3)
+        if (num >= pow(10, 66))
+        {
+            return "Infinity"
         }
-        return ""
+        if (num < 1000)
+        {
+            return "\(num)"
+        }
+        else
+        {
+            var exponent = 63.0
+            var v = pow(10.0, exponent)
+            var i = 0
+            while (v >= 1000)
+            {
+                if (num >= v)
+                {
+                    let value = num / v
+                    let roundedValue = round(value * 10) / 10.0
+                    return "\(roundedValue)\(placeNames[i])"
+                }
+                i += 1
+                exponent -= 3.0
+                v = pow(10.0, exponent)
+            }
+            return "failure"
+        }
     }
 }
 
