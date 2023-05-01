@@ -35,14 +35,50 @@ struct ContentView: View {
         "k"
     ]
     @State private var cookies = 0.0
+    @State private var cps = 0.0
+    @State private var numberOfItems =
+    [
+        0, // Number of Cursors
+        0, // Number of Grandmas
+        0, // Number of Farms
+        0, // Number of Mines
+        0, // Number of Factories
+        0, // Number of Banks
+        0, // Number of Temples
+        0, // Number of Wizard Towers
+        0, // Number of Shipments
+        0, // Number of Alchemy Labs
+        0, // Number of Portals
+        0, // Number of Time Machines
+        0, // Number of Antimatter Condensers
+        0, // Number of Prisms
+        0, // Number of Chancemakers
+        0, // Number of Fractal Engines
+        0, // Number of Javascript Consoles
+        0, // Number of Idleverses
+        0, // Number of Cortex Bakers
+    ]
+    @State private var showingShopView = false
     var body: some View {
         VStack {
             TitleText(text: "Cook E Clicker")
             BodyText(text: "Cook E's Summoned: \(format(num: cookies))")
+            BodyText(text: "Base CPS: \(format(num: cps))")
             Image("Cook E").resizable().frame(width: 400, height: 400)
                 .onTapGesture {
                     cookies += 1
                 }
+                .sheet(isPresented: $showingShopView, content: {
+                    ShopView()
+                })
+            Button(action: {showingShopView = true}) {
+                Text("Shop")
+            }
+            .buttonStyle(CustomButtonStyleGreen())
+            Button(action: {reset()}) {
+                Text("Reset")
+            }
+            .buttonStyle(CustomButtonStyleRed())
         }
     }
     // This function formats the given number according to the digits place, ex: 10000000 -> "10m"
@@ -75,6 +111,11 @@ struct ContentView: View {
             return "failure"
         }
     }
+    func reset() {
+        cookies = 0.0
+        cps = 0.0
+        numberOfItems = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -94,5 +135,29 @@ struct BodyText: View {
     let text: String
     var body: some View {
         Text(text).font(Font.custom("Cochin", size: 24))
+    }
+}
+
+struct CustomButtonStyleGreen: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .frame(width: 75)
+            .font(Font.custom("Cochin", size: 24))
+            .padding()
+            .background(.green).opacity(configuration.isPressed ? 0.0 : 1.0)
+            .foregroundColor(.black)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+    }
+}
+
+struct CustomButtonStyleRed: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .frame(width: 75)
+            .font(Font.custom("Cochin", size: 24))
+            .padding()
+            .background(.red).opacity(configuration.isPressed ? 0.0 : 1.0)
+            .foregroundColor(.black)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 }
