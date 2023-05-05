@@ -15,6 +15,7 @@
 		B64B28EC29E5A6A900B1D823 /* Cookie_Clicker_But_BadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64B28EB29E5A6A900B1D823 /* Cookie_Clicker_But_BadTests.swift */; };
 		B64B28F629E5A6A900B1D823 /* Cookie_Clicker_But_BadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64B28F529E5A6A900B1D823 /* Cookie_Clicker_But_BadUITests.swift */; };
 		B64B28F829E5A6A900B1D823 /* Cookie_Clicker_But_BadUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64B28F729E5A6A900B1D823 /* Cookie_Clicker_But_BadUITestsLaunchTests.swift */; };
+		B658D4412A05508D00757742 /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B658D4402A05508D00757742 /* GameData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		B64B28F129E5A6A900B1D823 /* Cookie Clicker But BadUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Cookie Clicker But BadUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B64B28F529E5A6A900B1D823 /* Cookie_Clicker_But_BadUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cookie_Clicker_But_BadUITests.swift; sourceTree = "<group>"; };
 		B64B28F729E5A6A900B1D823 /* Cookie_Clicker_But_BadUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cookie_Clicker_But_BadUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B658D4402A05508D00757742 /* GameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 			children = (
 				B64B28DA29E5A6A600B1D823 /* Cookie_Clicker_But_BadApp.swift */,
 				B64B28DC29E5A6A600B1D823 /* ContentView.swift */,
+				B658D4402A05508D00757742 /* GameData.swift */,
 				B601189429ED93FB008A0436 /* ShopView.swift */,
 				B64B28DE29E5A6A900B1D823 /* Assets.xcassets */,
 				B64B28E029E5A6A900B1D823 /* Preview Content */,
@@ -261,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B601189529ED93FC008A0436 /* ShopView.swift in Sources */,
+				B658D4412A05508D00757742 /* GameData.swift in Sources */,
 				B64B28DD29E5A6A600B1D823 /* ContentView.swift in Sources */,
 				B64B28DB29E5A6A600B1D823 /* Cookie_Clicker_But_BadApp.swift in Sources */,
 			);

@@ -36,7 +36,9 @@ struct ContentView: View {
     ]
     @State private var cookies = 0.0
     @State private var cps = 0.0
-    @State private var numberOfItems =
+    @ObservedObject var gameData = GameData()
+    /*
+    @State var numberOfItems =
     [
         0, // Number of Cursors
         0, // Number of Grandmas
@@ -58,6 +60,7 @@ struct ContentView: View {
         0, // Number of Idleverses
         0, // Number of Cortex Bakers
     ]
+    */
     @State private var showingShopView = false
     var body: some View {
         VStack {
@@ -69,12 +72,13 @@ struct ContentView: View {
                     cookies += 1
                 }
                 .sheet(isPresented: $showingShopView, content: {
-                    ShopView()
+                    ShopView(gameData: gameData)
                 })
             Button(action: {showingShopView = true}) {
                 Text("Shop")
             }
             .buttonStyle(CustomButtonStyleGreen())
+            Text("\(gameData.numberOfItems[0])")
             Button(action: {reset()}) {
                 Text("Reset")
             }
@@ -114,7 +118,7 @@ struct ContentView: View {
     func reset() {
         cookies = 0.0
         cps = 0.0
-        numberOfItems = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        gameData.numberOfItems = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     }
 }
 
@@ -141,7 +145,8 @@ struct BodyText: View {
 struct CustomButtonStyleGreen: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .frame(width: 75)
+            //.frame(width: 75)
+            .frame(height: 1)
             .font(Font.custom("Cochin", size: 24))
             .padding()
             .background(.green).opacity(configuration.isPressed ? 0.0 : 1.0)
@@ -153,7 +158,8 @@ struct CustomButtonStyleGreen: ButtonStyle {
 struct CustomButtonStyleRed: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .frame(width: 75)
+            //.frame(width: 75)
+            .frame(height: 1)
             .font(Font.custom("Cochin", size: 24))
             .padding()
             .background(.red).opacity(configuration.isPressed ? 0.0 : 1.0)
