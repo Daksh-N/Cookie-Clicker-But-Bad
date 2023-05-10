@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct ShopView: View {
+    /*
     @State private var items =
     [
-        Item(name: "Cursor", price: 15.0, cps: 0.1),
-        Item(name: "Grandma", price: 100.0, cps: 1.0),
+        Item(name: "Cursor", price: 15.0, cps: 1.0),
+        Item(name: "Grandma", price: 100.0, cps: 5.0),
         Item(name: "Farm", price: 1100.0, cps: 8.0),
         Item(name: "Mine", price: 12000.0, cps: 47.0),
         Item(name: "Factory", price: 130000.0, cps: 260.0),
@@ -30,17 +31,47 @@ struct ShopView: View {
         Item(name: "Idleverse", price: 12000000000000000000000.0, cps: 8300000000000.0),
         Item(name: "Cortex Baker", price: 1900000000000000000000000.0, cps: 64000000000000.0)
     ]
+    */
     @ObservedObject var gameData: GameData
     var body: some View {
         VStack {
-            ForEach (0..<19) { i in
+            HStack {
+                Spacer()
+            }
+            ForEach (0..<IntegerLiteralType(gameData.items.count)) { i in
                 HStack {
-                    Button(action: {
-                        gameData.numberOfItems[i] += 1
-                    }) {
-                        Item(name: items[i].name, price: items[i].price, cps: items[i].cps)
+                    if (gameData.cookies >= gameData.items[i].price) {
+                        Button(action: {
+                            gameData.numberOfItems[i] += 1
+                            gameData.cookies -= gameData.items[i].price
+                            gameData.cps += gameData.items[i].cps
+                            gameData.items[i].price = round(gameData.items[i].price * 1.15)
+                        }) {
+                            Item(name: gameData.items[i].name, price: gameData.items[i].price, cps: gameData.items[i].cps)
+                        }
+                        .buttonStyle(CustomButtonStyleGreen())
                     }
-                    .buttonStyle(CustomButtonStyleRed())
+                    else
+                    {
+                        Button(action: {}) {
+                            Item(name: gameData.items[i].name, price: gameData.items[i].price, cps: gameData.items[i].cps)
+                        }
+                        .buttonStyle(CustomButtonStyleRed())
+                    }
+                    BodyText(text: "\(ContentView().format(num: gameData.numberOfItems[i]) + " | " + ContentView().format(num: gameData.items[i].price))" + "c | " +  ContentView().format(num: gameData.items[i].cps) + "c/s")
+                        .padding(1)
+                    Spacer()
+                    if (i == 0)
+                    {
+                        Button(action: {
+                            gameData.showingShopView = false
+                        })
+                        {
+                            Text("Back")
+                        }
+                        .buttonStyle(CustomButtonStyleRed())
+                        .padding(1)
+                    }
                 }
             }
             /**
@@ -122,9 +153,9 @@ struct ShopView_Previews: PreviewProvider {
 
 struct Item: View {
     let name: String
-    let price: Double
+    var price: Double
     let cps: Double
     var body: some View {
-        BodyText(text: "\(name) | Price: \(ContentView().format(num: price)) cookies")
+        BodyText(text: "\(name)")
     }
 }

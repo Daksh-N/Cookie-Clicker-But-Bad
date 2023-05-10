@@ -6,7 +6,6 @@
 //
 
 // JJ was here
-// Test Commit
 
 import SwiftUI
 
@@ -35,51 +34,53 @@ struct ContentView: View {
         "m",
         "k"
     ]
-    @State private var cookies = 0.0
-    @State private var cps = 0.0
     @ObservedObject var gameData = GameData()
     /*
-    @State var numberOfItems =
-    [
-        0, // Number of Cursors
-        0, // Number of Grandmas
-        0, // Number of Farms
-        0, // Number of Mines
-        0, // Number of Factories
-        0, // Number of Banks
-        0, // Number of Temples
-        0, // Number of Wizard Towers
-        0, // Number of Shipments
-        0, // Number of Alchemy Labs
-        0, // Number of Portals
-        0, // Number of Time Machines
-        0, // Number of Antimatter Condensers
-        0, // Number of Prisms
-        0, // Number of Chancemakers
-        0, // Number of Fractal Engines
-        0, // Number of Javascript Consoles
-        0, // Number of Idleverses
-        0, // Number of Cortex Bakers
-    ]
-    */
-    @State private var showingShopView = false
+     @State var numberOfItems =
+     [
+     0, // Number of Cursors
+     0, // Number of Grandmas
+     0, // Number of Farms
+     0, // Number of Mines
+     0, // Number of Factories
+     0, // Number of Banks
+     0, // Number of Temples
+     0, // Number of Wizard Towers
+     0, // Number of Shipments
+     0, // Number of Alchemy Labs
+     0, // Number of Portals
+     0, // Number of Time Machines
+     0, // Number of Antimatter Condensers
+     0, // Number of Prisms
+     0, // Number of Chancemakers
+     0, // Number of Fractal Engines
+     0, // Number of Javascript Consoles
+     0, // Number of Idleverses
+     0, // Number of Cortex Bakers
+     ]
+     @State private var showingShopView = false
+     */
     var body: some View {
         VStack {
             TitleText(text: "Cook E Clicker")
-            BodyText(text: "Cook E's Summoned: \(format(num: cookies))")
-            BodyText(text: "Base CPS: \(format(num: cps))")
+            BodyText(text: "Cook E's Summoned: \(format(num: gameData.cookies))")
+            BodyText(text: "Base CPS: \(format(num: gameData.cps))")
             Image("Cook E").resizable().frame(width: 400, height: 400)
                 .onTapGesture {
-                    cookies += 1
+                    gameData.cookies += 1
                 }
-                .sheet(isPresented: $showingShopView, content: {
+                .sheet(isPresented: $gameData.showingShopView, content: {
                     ShopView(gameData: gameData)
                 })
-            Button(action: {showingShopView = true}) {
+                .onAppear {
+                    Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+                        startTimer()
+                    }
+                }
+            Button(action: {gameData.showingShopView = true}) {
                 Text("Shop")
             }
             .buttonStyle(CustomButtonStyleGreen())
-            Text("\(gameData.numberOfItems[0])")
             Button(action: {reset()}) {
                 Text("Reset")
             }
@@ -117,10 +118,14 @@ struct ContentView: View {
         }
     }
     func reset() {
-        cookies = 0.0
-        cps = 0.0
+        gameData.cookies = 0.0
+        gameData.cps = 0.0
         gameData.numberOfItems = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     }
+    func startTimer() {
+            gameData.cookies += gameData.cps
+    }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -132,21 +137,21 @@ struct ContentView_Previews: PreviewProvider {
 struct TitleText: View {
     let text: String
     var body: some View {
-        Text(text).font(Font.custom("Cochin", size: 48))
+        Text(text).font(Font.custom("Cochin", size: 40))
     }
 }
 
 struct BodyText: View {
     let text: String
     var body: some View {
-        Text(text).font(Font.custom("Cochin", size: 24))
+        Text(text).font(Font.custom("Cochin", size: 20))
     }
 }
 
 struct CustomButtonStyleGreen: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            //.frame(width: 75)
+            .frame(width: 75)
             .frame(height: 1)
             .font(Font.custom("Cochin", size: 24))
             .padding()
@@ -159,7 +164,7 @@ struct CustomButtonStyleGreen: ButtonStyle {
 struct CustomButtonStyleRed: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            //.frame(width: 75)
+            .frame(width: 75)
             .frame(height: 1)
             .font(Font.custom("Cochin", size: 24))
             .padding()
