@@ -52,7 +52,25 @@ class GameData: ObservableObject {
         Item(name: "Idleverse", price: 12000000000000000000000.0, cps: 8300000000000.0),
         Item(name: "Cortex Baker", price: 1900000000000000000000000.0, cps: 64000000000000.0)
     ]
-    @Published var cookies = 0.0
-    @Published var cps = 0.0
-    @Published var showingShopView = false
+    @Published var cpcUpgrades =
+    [
+        Item(name: "Cook E", price: pow(10, 6), cps: 1),
+        Item(name: "Black Cook E", price: pow(10, 9), cps: 2),
+        Item(name: "Gray Cook E", price: pow(10, 12), cps: 4),
+        Item(name: "Red Cook E", price: pow(10, 15), cps: 8),
+        Item(name: "Orange Cook E", price: pow(10, 18), cps: 16),
+        Item(name: "Yellow Cook E", price: pow(10, 21), cps: 32),
+        Item(name: "Green Cook E", price: pow(10, 24), cps: 64),
+        Item(name: "Blue Cook E", price: pow(10, 27), cps: 128),
+        Item(name: "Purple Cook E", price: pow(10, 30), cps: 256),
+        Item(name: "Pink Cook E", price: pow(10, 33), cps: 512),
+        Item(name: "Chocolate Chip Cook E", price: pow(10, 36), cps: 1024),
+        Item(name: "Red Velvet Cook E", price: pow(10, 39), cps: 2048)
+    ]
+    @Published var cpcTier = 0 // This number represents what index of the above array we are on
+    @Published var cookies = 0.0 // Amount of cookies you have
+    @Published var cps = 0.0 // Your cookies per second rate
+    @Published var cpc = 1.0 // Your cookies per click rate
+    @Published var showingShopView = false // A boolean that dictates if the ShopView is being shown
+    @Published var showingCpcView = false // A boolean that dictates if the CpcView (Cookies per click View) is being shown
 }

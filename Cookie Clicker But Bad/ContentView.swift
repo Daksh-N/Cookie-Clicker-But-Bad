@@ -65,12 +65,16 @@ struct ContentView: View {
             TitleText(text: "Cook E Clicker")
             BodyText(text: "Cook E's Summoned: \(format(num: gameData.cookies))")
             BodyText(text: "Base CPS: \(format(num: gameData.cps))")
-            Image("Cook E").resizable().frame(width: 400, height: 400)
+            BodyText(text: "Base CPC: \(format(num: gameData.cpc))")
+            Image(gameData.cpcUpgrades[gameData.cpcTier].name).resizable().frame(width: 400, height: 400)
                 .onTapGesture {
-                    gameData.cookies += 1
+                    gameData.cookies += gameData.cpc
                 }
                 .sheet(isPresented: $gameData.showingShopView, content: {
                     ShopView(gameData: gameData)
+                })
+                .sheet(isPresented: $gameData.showingCpcView, content: {
+                    CpcView(gameData: gameData)
                 })
                 .onAppear {
                     Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
@@ -79,6 +83,10 @@ struct ContentView: View {
                 }
             Button(action: {gameData.showingShopView = true}) {
                 Text("Shop")
+            }
+            .buttonStyle(CustomButtonStyleGreen())
+            Button(action: {gameData.showingCpcView = true}) {
+                Text("Cpc")
             }
             .buttonStyle(CustomButtonStyleGreen())
             Button(action: {reset()}) {
