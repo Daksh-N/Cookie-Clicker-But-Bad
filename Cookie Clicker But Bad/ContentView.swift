@@ -149,6 +149,13 @@ struct TitleText: View {
     }
 }
 
+struct MiddleText: View {
+    let text: String
+    var body: some View {
+        Text(text).font(Font.custom("Cochin", size: 30))
+    }
+}
+
 struct BodyText: View {
     let text: String
     var body: some View {

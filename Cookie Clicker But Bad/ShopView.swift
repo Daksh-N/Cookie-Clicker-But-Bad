@@ -36,7 +36,7 @@ struct ShopView: View {
     var body: some View {
         VStack {
             Spacer()
-            ForEach (0..<IntegerLiteralType(gameData.items.count)) { i in
+            ForEach (0..<19) { i in
                 HStack {
                     if (gameData.cookies >= gameData.items[i].price) {
                         Button(action: {

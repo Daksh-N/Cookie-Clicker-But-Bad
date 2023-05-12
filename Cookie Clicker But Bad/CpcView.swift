@@ -16,8 +16,9 @@ struct CpcView: View {
                 TitleText(text: "Damn, guess you're already at your max upgrade")
             }
             else {
-                TitleText(text: "Cpc stands for \"Cookies Per Click\" \n - Devs")
-                Image(gameData.cpcUpgrades[gameData.cpcTier + 1].name).resizable().frame(width: 400, height: 400)
+                MiddleText(text: "Cpc stands for \"Cookies Per Click\" \n - Devs")
+                BodyText(text: "Upgrade to \(gameData.cpcUpgrades[gameData.cpcTier + 1].name)")
+                Image(gameData.cpcUpgrades[gameData.cpcTier + 1].name).resizable().frame(width: 300, height: 300)
                 BodyText(text: "Price: \(ContentView().format(num: gameData.cpcUpgrades[gameData.cpcTier].price))")
                 if(gameData.cookies >= gameData.cpcUpgrades[gameData.cpcTier].price) {
                     Button(action: {
@@ -31,7 +32,7 @@ struct CpcView: View {
                 }
                 else {
                     Button(action: {}) {
-                        Text("^Cpc^")
+                        Text("Upgrade")
                     }
                     .buttonStyle(CustomButtonStyleRed())
                 }
