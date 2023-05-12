@@ -11,6 +11,17 @@ struct CpcView: View {
     @ObservedObject var gameData: GameData
     var body: some View {
         VStack {
+            Spacer()
+            HStack {
+                Spacer()
+                Button(action: {
+                    gameData.showingCpcView = false
+                })
+                {
+                    Text("Back")
+                }
+                .buttonStyle(CustomButtonStyleRed())
+            }
             if (gameData.cpcTier >= gameData.cpcUpgrades.count - 1)
             {
                 TitleText(text: "Damn, guess you're already at your max upgrade")
@@ -36,14 +47,9 @@ struct CpcView: View {
                     }
                     .buttonStyle(CustomButtonStyleRed())
                 }
-                Button(action: {
-                    gameData.showingCpcView = false
-                })
-                {
-                    Text("Back")
-                }
-                .buttonStyle(CustomButtonStyleRed())
+                BodyText(text: "Due to low budget, I have to clarify that button above is supposed to say \"Upgrade\"")
             }
+            Spacer()
         }
     }
 }
