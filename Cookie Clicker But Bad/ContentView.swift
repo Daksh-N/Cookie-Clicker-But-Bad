@@ -129,6 +129,8 @@ struct ContentView: View {
         gameData.cookies = 0.0
         gameData.cps = 0.0
         gameData.numberOfItems = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        gameData.cpcTier = 0
+        gameData.cpc = 1
     }
     func startTimer() {
             gameData.cookies += gameData.cps
